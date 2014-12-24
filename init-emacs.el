@@ -1,14 +1,26 @@
 ;; Emacs configuration file
+;; 
+;; Just checkout somewhere and link ~/.emacs to it. For development and test
+;; runs 'emacs -q -l path-to-init-emacs.el'
+;;
 
 ;; under gentoo
-(require 'site-gentoo)
+(require 'site-gentoo nil 1)
+; Other method to check existence and run:
+;;;(if (member 'site-gentoo features)
+;;;    (require 'site-gentoo))
 
 ;; sudo support
 (require 'tramp)
 
 ;; color theme support
-(color-theme-initialize)
-(color-theme-calm-forest)
+(when (member 'color-theme features)
+  (color-theme-initialize)
+  (color-theme-calm-forest))
+
+;; Set frame size in the X-Windows system
+(if window-system
+    (set-frame-size (selected-frame) 100 40))
 
 ;; Base font to show content
 (set-face-attribute 'default nil :font "DejaVu Sans Mono-11")
