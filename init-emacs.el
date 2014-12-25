@@ -14,7 +14,7 @@
 (require 'tramp)
 
 ;; color theme support
-(when (member 'color-theme features)
+(when (require 'color-theme nil 1)
   (color-theme-initialize)
   (color-theme-calm-forest))
 
