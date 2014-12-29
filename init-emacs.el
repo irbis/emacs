@@ -67,6 +67,8 @@
                                  "Август" "Сентябрь" "Октябрь" "Ноябрь" "Декабрь"])
 
 ;; Programming languages mode hooks
+;; turn highlight mode globally
+(global-hi-lock-mode())
 (add-hook 'c++-mode-hook (lambda()
                            (turn-on-auto-fill)
                            (set-fill-column 80)))
