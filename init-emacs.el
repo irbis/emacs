@@ -37,6 +37,7 @@
  '(tab-width 4)
  '(tool-bar-mode nil)
  '(nxml-slash-auto-complete-flag 1)
+ '(compilation-scroll-output t)
 ; calendar variables
  '(calendar-latitude 49.9)
  '(calendar-longitude 36.3)
@@ -82,4 +83,3 @@
 (add-hook 'text-mode-hook (lambda()
                               (turn-on-auto-fill)
                               (set-fill-column 80)))
-
