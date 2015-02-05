@@ -67,6 +67,12 @@
       calendar-month-name-array ["Январь" "Февраль" "Март" "Апрель" "Май" "Июнь" "Июль"
                                  "Август" "Сентябрь" "Октябрь" "Ноябрь" "Декабрь"])
 
+;; slime
+(setq inferior-lisp-program "/usr/bin/sbcl")
+(add-to-list 'load-path "/usr/share/emacs/site-list/slime")
+(require 'slime)
+(slime-setup)
+
 ;; Programming languages mode hooks
 ;; turn highlight mode globally
 (global-hi-lock-mode())
