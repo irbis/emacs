@@ -4,6 +4,9 @@
 ;; runs 'emacs -q -l path-to-init-emacs.el'
 ;;
 
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
 ;; under gentoo
@@ -34,18 +37,23 @@
 ;; variables
 ; turn off startup message
 (custom-set-variables
- '(package-selected-packages (quote (gnu-elpa-keyring-update)))
- '(inhibit-startup-message t)
- '(initial-buffer-choice nil)
- '(indent-tabs-mode nil)
- '(tab-width 4)
- '(tool-bar-mode nil)
- '(nxml-slash-auto-complete-flag 1)
- '(compilation-scroll-output t)
-; calendar variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(calendar-latitude 49.9)
+ '(calendar-location-name "Kharkiv, UA")
  '(calendar-longitude 36.3)
- '(calendar-location-name "Kharkiv, UA"))
+ '(compilation-scroll-output t)
+ '(indent-tabs-mode nil)
+ '(inhibit-startup-screen t)
+ '(initial-buffer-choice nil)
+ '(nxml-slash-auto-complete-flag 1)
+ '(package-selected-packages
+   (quote
+    (company-lsp yasnippet lsp-ui lsp-mode flycheck sbt-mode scala-mode use-package gnu-elpa-keyring-update)))
+ '(tab-width 4)
+ '(tool-bar-mode nil))
 
 
 ; modes and submodes
@@ -95,3 +103,56 @@
 (add-hook 'text-mode-hook (lambda()
                               (turn-on-auto-fill)
                               (set-fill-column 80)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;; scala meta, please check https://scalameta.org for details of installation
+(require 'use-package)
+
+;; Enable defer and ensure by default for use-package
+;; Keep auto-save/backup files separate from source code:  https://github.com/scalameta/metals/issues/1027
+(setq use-package-always-defer t
+      use-package-always-ensure t
+      backup-directory-alist `((".*" . ,temporary-file-directory))
+      auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
+
+
+;; Enable scala-mode and sbt-mode
+(use-package scala-mode
+  :mode "\\.s\\(cala\\|bt\\)$")
+
+(use-package sbt-mode
+  :commands sbt-start sbt-command
+  :config
+  ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
+  ;; allows using SPACE when in the minibuffer
+  (substitute-key-definition
+   'minibuffer-complete-word
+   'self-insert-command
+   minibuffer-local-completion-map)
+   ;; sbt-supershell kills sbt-mode:  https://github.com/hvesalai/emacs-sbt-mode/issues/152
+   (setq sbt:program-options '("-Dsbt.supershell=false"))
+)
+
+;; Enable nice rendering of diagnostics like compile errors.
+(use-package flycheck
+  :init (global-flycheck-mode))
+
+(use-package lsp-mode
+  ;; Optional - enable lsp-mode automatically in scala files
+  :hook (scala-mode . lsp)
+  :config (setq lsp-prefer-flymake nil))
+
+(use-package lsp-ui)
+
+;; lsp-mode supports snippets, but in order for them to work you need to use yasnippet
+;; If you don't want to use snippets set lsp-enable-snippet to nil in your lsp-mode settings
+;;   to avoid odd behavior with snippets and indentation
+(use-package yasnippet)
+
+;; Add company-lsp backend for metals
+(use-package company-lsp)
