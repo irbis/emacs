@@ -4,6 +4,7 @@
 ;; runs 'emacs -q -l path-to-init-emacs.el'
 ;;
 
+;;
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
@@ -14,6 +15,10 @@
 ; Other method to check existence and run:
 ;;;(if (member 'site-gentoo features)
 ;;;    (require 'site-gentoo))
+
+;; Ido mode
+(require 'ido)
+(ido-mode t)
 
 ;; sudo support
 (setq tramp-default-method "ssh")
