@@ -4,6 +4,8 @@
 ;; runs 'emacs -q -l path-to-init-emacs.el'
 ;;
 
+(package-initialize)
+
 ;; under gentoo
 ;;(require 'site-gentoo nil 1)
 ; Other method to check existence and run:
@@ -32,6 +34,7 @@
 ;; variables
 ; turn off startup message
 (custom-set-variables
+ '(package-selected-packages (quote (gnu-elpa-keyring-update)))
  '(inhibit-startup-message t)
  '(initial-buffer-choice nil)
  '(indent-tabs-mode nil)
