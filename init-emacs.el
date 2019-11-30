@@ -5,12 +5,13 @@
 ;;
 
 ;; under gentoo
-(require 'site-gentoo nil 1)
+;;(require 'site-gentoo nil 1)
 ; Other method to check existence and run:
 ;;;(if (member 'site-gentoo features)
 ;;;    (require 'site-gentoo))
 
 ;; sudo support
+(setq tramp-default-method "ssh")
 (require 'tramp)
 
 ;; color theme support
@@ -68,10 +69,10 @@
                                  "Август" "Сентябрь" "Октябрь" "Ноябрь" "Декабрь"])
 
 ;; slime
-(setq inferior-lisp-program "/usr/bin/sbcl")
-(add-to-list 'load-path "/usr/share/emacs/site-list/slime")
-(require 'slime)
-(slime-setup)
+;(setq inferior-lisp-program "/usr/bin/sbcl")
+;(add-to-list 'load-path "/usr/share/emacs/site-list/slime")
+;(require 'slime)
+;(slime-setup)
 
 ;; Programming languages mode hooks
 ;; turn highlight mode globally
