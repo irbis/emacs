@@ -33,11 +33,14 @@
 (if window-system
     (set-frame-size (selected-frame) 100 40))
 
-(when (string= system-type "gnu/linux")
-  ;; Base font to show content
+;; Define base font to show the content
+(cond
+ ((string= system-type "gnu/linux")
+  ; other tests fonts under the linux: "Inconsolata-14" and "Anonymous Pro-14"
   (set-face-attribute 'default nil :font "DejaVu Sans Mono-11"))
-  ;(set-face-attribute 'default nil :font "Inconsolata-14")
-  ;(set-face-attribute 'default nil :font "Anonymous Pro-14")
+ ((string= system-type "darwin")
+  (set-face-attribute 'default nil :font "Menlo-14")))
+
 
 ;; common settings
 ;; variables
