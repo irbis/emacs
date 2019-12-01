@@ -39,7 +39,9 @@
   ; other tests fonts under the linux: "Inconsolata-14" and "Anonymous Pro-14"
   (set-face-attribute 'default nil :font "DejaVu Sans Mono-11"))
  ((string= system-type "darwin")
-  (set-face-attribute 'default nil :font "Menlo-14")))
+  (set-face-attribute 'default nil :font "Menlo-14")  
+  (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+  (setq exec-path (append exec-path (list "/usr/local/bin")))))
 
 
 ;; common settings
