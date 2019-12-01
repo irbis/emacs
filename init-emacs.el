@@ -62,7 +62,7 @@
  '(nxml-slash-auto-complete-flag 1)
  '(package-selected-packages
    (quote
-    (yaml-mode magit company-lsp yasnippet lsp-ui lsp-mode flycheck sbt-mode scala-mode use-package gnu-elpa-keyring-update)))
+    (projectile dockerfile-mode yaml-mode magit company-lsp yasnippet lsp-ui lsp-mode flycheck sbt-mode scala-mode use-package gnu-elpa-keyring-update)))
  '(tab-width 4)
  '(tool-bar-mode nil))
 
@@ -139,6 +139,13 @@
       backup-directory-alist `((".*" . ,temporary-file-directory))
       auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
+;; Enable projectile
+(use-package projectile
+  :ensure t
+  :config
+  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode +1))
 
 ;; Enable scala-mode and sbt-mode
 (use-package scala-mode
