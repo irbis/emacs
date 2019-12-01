@@ -33,10 +33,11 @@
 (if window-system
     (set-frame-size (selected-frame) 100 40))
 
-;; Base font to show content
-(set-face-attribute 'default nil :font "DejaVu Sans Mono-11")
-;(set-face-attribute 'default nil :font "Inconsolata-14")
-;(set-face-attribute 'default nil :font "Anonymous Pro-14")
+(when (string= system-type "gnu/linux")
+  ;; Base font to show content
+  (set-face-attribute 'default nil :font "DejaVu Sans Mono-11"))
+  ;(set-face-attribute 'default nil :font "Inconsolata-14")
+  ;(set-face-attribute 'default nil :font "Anonymous Pro-14")
 
 ;; common settings
 ;; variables
