@@ -62,7 +62,7 @@
  '(nxml-slash-auto-complete-flag 1)
  '(package-selected-packages
    (quote
-    (magit company-lsp yasnippet lsp-ui lsp-mode flycheck sbt-mode scala-mode use-package gnu-elpa-keyring-update)))
+    (yaml-mode magit company-lsp yasnippet lsp-ui lsp-mode flycheck sbt-mode scala-mode use-package gnu-elpa-keyring-update)))
  '(tab-width 4)
  '(tool-bar-mode nil))
 
@@ -117,6 +117,11 @@
 (add-hook 'text-mode-hook (lambda()
                               (turn-on-auto-fill)
                               (set-fill-column 80)))
+
+(add-hook 'yaml-mode-hook (lambda()
+                            (turn-on-auto-fill)
+                            (set-fill-column 80)))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
