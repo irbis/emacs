@@ -60,7 +60,7 @@
  '(nxml-slash-auto-complete-flag 1)
  '(package-selected-packages
    (quote
-    (company-lsp yasnippet lsp-ui lsp-mode flycheck sbt-mode scala-mode use-package gnu-elpa-keyring-update)))
+    (magit company-lsp yasnippet lsp-ui lsp-mode flycheck sbt-mode scala-mode use-package gnu-elpa-keyring-update)))
  '(tab-width 4)
  '(tool-bar-mode nil))
 
@@ -87,6 +87,9 @@
       calendar-day-name-array ["Вс" "Пн" "Вт" "Ср" "Чт" "Пт" "Сб"]
       calendar-month-name-array ["Январь" "Февраль" "Март" "Апрель" "Май" "Июнь" "Июль"
                                  "Август" "Сентябрь" "Октябрь" "Ноябрь" "Декабрь"])
+
+;; magit settings
+(global-set-key (kbd "C-x g") 'magit-status)
 
 ;; slime
 ;(setq inferior-lisp-program "/usr/bin/sbcl")
