@@ -37,7 +37,7 @@
 (cond
  ((string= system-type "gnu/linux")
   ; other tests fonts under the linux: "Inconsolata-14" and "Anonymous Pro-14"
-  (set-face-attribute 'default nil :font "DejaVu Sans Mono-11"))
+  (set-face-attribute 'default nil :font "DejaVu Sans Mono-14"))
  ((string= system-type "darwin")
   (set-face-attribute 'default nil :font "Menlo-14")  
   (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
@@ -62,7 +62,7 @@
  '(nxml-slash-auto-complete-flag 1)
  '(package-selected-packages
    (quote
-    (projectile dockerfile-mode yaml-mode magit company-lsp yasnippet lsp-ui lsp-mode flycheck sbt-mode scala-mode use-package gnu-elpa-keyring-update)))
+    (terraform-doc terraform-mode projectile dockerfile-mode yaml-mode magit company-lsp yasnippet lsp-ui lsp-mode flycheck sbt-mode scala-mode use-package gnu-elpa-keyring-update)))
  '(tab-width 4)
  '(tool-bar-mode nil))
 
