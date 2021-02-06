@@ -31,7 +31,7 @@
 
 ;; Set frame size in the X-Windows system
 (if window-system
-    (set-frame-size (selected-frame) 100 40))
+    (set-frame-size (selected-frame) 80 25))
 
 ;; Define base font to show the content
 (cond
