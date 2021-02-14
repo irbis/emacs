@@ -24,10 +24,13 @@
 (setq tramp-default-method "ssh")
 (require 'tramp)
 
-;; color theme support
-(when (require 'color-theme nil 1)
-  (color-theme-initialize)
-  (color-theme-calm-forest))
+;; install color theme - color-theme-initialize is not support
+;; since version 21.1. Left it for the history
+(if (require 'color-theme nil 1)
+    (progn
+      (color-theme-initialize)
+      (color-theme-initialize))
+  (load-theme 'tango-dark))
 
 ;; Set frame size in the X-Windows system
 (if window-system
@@ -37,9 +40,9 @@
 (cond
  ((string= system-type "gnu/linux")
   ; other tests fonts under the linux: "Inconsolata-14" and "Anonymous Pro-14"
-  (set-face-attribute 'default nil :font "DejaVu Sans Mono-14"))
+  (set-face-attribute 'default nil :font "DejaVu Sans Mono-12"))
  ((string= system-type "darwin")
-  (set-face-attribute 'default nil :font "Menlo-14")  
+  (set-face-attribute 'default nil :font "Menlo-14")
   (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
   (setq exec-path (append exec-path (list "/usr/local/bin")))))
 
@@ -62,7 +65,7 @@
  '(nxml-slash-auto-complete-flag 1)
  '(package-selected-packages
    (quote
-    (terraform-doc terraform-mode projectile dockerfile-mode yaml-mode magit company-lsp yasnippet lsp-ui lsp-mode flycheck sbt-mode scala-mode use-package gnu-elpa-keyring-update)))
+    (lsp-docker lsp-intellij lsp-java lsp-metals terraform-doc terraform-mode projectile dockerfile-mode yaml-mode magit company-lsp yasnippet lsp-ui lsp-mode flycheck sbt-mode scala-mode use-package gnu-elpa-keyring-update)))
  '(tab-width 4)
  '(tool-bar-mode nil))
 
@@ -108,7 +111,8 @@
 
 (add-hook 'python-mode-hook (lambda()
                               (turn-on-auto-fill)
-                              (set-fill-column 89)))
+                              (set-fill-column 89)
+                              (setq python-shell-interpreter "/opt/python3.7/bin/python3.7")))
 
 (add-hook 'java-mode-hook (lambda()
                               (turn-on-auto-fill)
